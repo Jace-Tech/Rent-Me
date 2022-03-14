@@ -13,6 +13,7 @@
     "@expo-google-fonts/inter": "^0.2.2",
     "@react-native-firebase/app": "^14.5.1",
     "@react-native-firebase/firestore": "^14.5.1",
+    "@react-native-firebase/perf": "^14.5.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@reduxjs/toolkit": "^1.7.1",
