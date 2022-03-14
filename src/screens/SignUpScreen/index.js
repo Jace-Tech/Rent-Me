@@ -1,27 +1,36 @@
-import { Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import LoadFont from '../../components/LoadFont'
-import Container from '../../components/Container'
+import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Icon } from 'react-native-elements'
+
 import {PRIMARY_COLOR, TEXT_PRIMARY_COLOR} from "../../utils/colors"
+import { globalStyles } from '../../utils/globalStyles'
+import { firebaseAuth } from "../../../firebase"
+// import { DatabaseContext } from "../../contexts/DatabaseContext"
+
+import firestore from '@react-native-firebase/firestore'
+
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-import { globalStyles } from '../../utils/globalStyles'
-import { Icon } from 'react-native-elements'
-import { Pressable } from 'react-native'
-import { DatabaseContext } from "../../contexts/DatabaseContext"
+import LoadFont from '../../components/LoadFont'
+import Container from '../../components/Container'
 
 
 const SignUp = ({ navigation }) => {
-    const { DB, users } = useContext(DatabaseContext)
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-
+    // const { DB, users } = useContext(DatabaseContext)
+    const [user, setUser] = useState({
+        username: "",
+        password: "",
+    })
     const [isPressed, setIsPressed] = useState(false)
+
+    useEffect(() => {
+        console.log({user})
+    }, [user])
 
     
 
     const addUser = () => {
-        setIsPressed(prev => !prev)
+        // setIsPressed(prev => !prev)
         
         // DB.transaction(tx => {
         //     tx.executeSql("INSERT INTO users (id, username, password) VALUES (?, ?, ?)", [users?.length + 1, username, password], ((obj, {insertId}) => {
@@ -33,7 +42,7 @@ const SignUp = ({ navigation }) => {
         //         console.log("ERROR =>>>", error)
         //     })
         // })
-        navigation.navigate('SignIn')
+        // navigation.navigate('SignIn')
     }
 
     return (
@@ -49,11 +58,11 @@ const SignUp = ({ navigation }) => {
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ marginTop: 30 }}>
                     <Container>
                         <View style={{marginBottom: 25}}>
-                            <Input label="Username" handleChange={setUsername} placeholder="Enter username"/>
+                            <Input label="Username" handleChange={(text) => setUser(prev => ({...prev, username: text}))} placeholder="Enter username"/>
                         </View>
 
                         <View>
-                            <Input label="Password" handleChange={setPassword} type="password" placeholder="Enter password"/>
+                            <Input label="Password" handleChange={(text) => setUser(prev => ({...prev, password: text}))} type="password" placeholder="Enter password"/>
 
                             <View style={{ marginTop: 15}}>
                                 <View style={[globalStyles.alignCenter, {marginBottom: 15}]}>

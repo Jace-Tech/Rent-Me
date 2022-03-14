@@ -2,13 +2,13 @@ import { Image, Pressable, ScrollView, StyleSheet, FlatList, Text, View, Dimensi
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Icon } from 'react-native-elements'
+import MapView from 'react-native-maps'
 
 import { globalStyles } from '../../utils/globalStyles'
 import { BLACK, BLUE, GREEN, TEXT_SECONDARY_COLOR } from '../../utils/colors'
+import { useMap } from '../../contexts/MapContext'
 
 import Container from '../../components/Container'
-import MapView from 'react-native-maps'
-import { useMap } from '../../contexts/MapContext'
 import PageSection from '../../components/Section'
 import PropertyCard from '../../components/PropertyCard'
 import PropertyCardList from '../../components/PropertyCardList'
@@ -91,7 +91,7 @@ const Details = ({ navigation }) => {
             <HeaderNav title="Details" />
 
             <ScrollView style={{flex: 1}}> 
-                <View>
+                <View>v
                     <Container>
                         <View style={{position: 'relative', paddingBottom: 30}}>
                             <Image source={details.image} style={styles.detailImage} />
@@ -106,7 +106,7 @@ const Details = ({ navigation }) => {
                                         <Icon name="local-phone" color="#fff" size={20} type="materialicon" />
                                     </Pressable>
 
-                                    <Pressable style={[styles.iconButton, {marginLeft: 8, backgroundColor: BLUE}]}>
+                                    <Pressable onPress={() => navigation.navigate('Message')} style={[styles.iconButton, {marginLeft: 8, backgroundColor: BLUE}]}>
                                         <Icon name="message-circle" color="#fff" size={20} type="feather" />
                                     </Pressable>
                                 </View>
@@ -143,6 +143,7 @@ const Details = ({ navigation }) => {
                                 />
                                 <Text style={{color: TEXT_SECONDARY_COLOR, fontSize: 12}}>Light? Yes!</Text>
                             </View>
+
                             <View>
                                 <Icon 
                                     size={16}
@@ -153,6 +154,7 @@ const Details = ({ navigation }) => {
                                 />
                                 <Text style={{color: TEXT_SECONDARY_COLOR, fontSize: 12}}>3 Bathrooms</Text>
                             </View>
+
                             <View>
                                 <Icon 
                                     size={16}
@@ -163,6 +165,7 @@ const Details = ({ navigation }) => {
                                 />
                                 <Text style={{color: TEXT_SECONDARY_COLOR, fontSize: 12}}>Comfortable</Text>
                             </View>
+
                             <View>
                                 <Icon 
                                     size={16}
@@ -188,7 +191,6 @@ const Details = ({ navigation }) => {
 
                 <PageSection title="Property Overview" style={{marginTop: 25}} linkLess>
                     <Text style={styles.paragraph}>A well-presented, self-motivated individual making positive impact. Ezra is a team player with leadership, technical, interpersonal, and excellent communication skills in contributing to the development of organization goals.</Text>
-
                     <Text style={styles.paragraph}>A well-presented, self-motivated individual making positive impact. Ezra is a team player with leadership, technical, interpersonal,  and excellent communication skills in  contributing to the development of organization goals. player with leadership, technical, interpersonal,  and excellent communication skills in  contributing to the development of organization goals.</Text>
                 </PageSection>
 
@@ -229,7 +231,6 @@ const Details = ({ navigation }) => {
                         snapToAlignment='center'
                         snapToInterval={Dimensions.get('screen').width}
                         horizontal
-                        snap
                         renderItem={({item}) =>  (
                             <PropertyCardList {...item} />
                         )}

@@ -2,10 +2,10 @@ import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-nati
 import React from 'react'
 import { BLACK, TEXT_SECONDARY_COLOR } from '../../utils/colors'
 
-const PropertyCardList = ({ }) => {
+const PropertyCardList = ({ image }) => {
     return (
         <Pressable onPress={() => alert("Details")} style={styles.cardContainer}>
-            <Image style={styles.cardImage} source={require('../../../assets/house/house1.jpg')} />
+            <Image style={styles.cardImage} source={image || require('../../../assets/house/house1.jpg')} />
 
             <View style={{marginLeft: 15}}>
                 <Text style={styles.cardTitle}>Deri's Apartment</Text>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 
     cardImage: {
-        width: 100,
+        width: 115,
         height: 100,
         borderRadius: 5,
     },

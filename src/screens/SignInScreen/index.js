@@ -1,14 +1,17 @@
+import React, { useContext, useState } from 'react'
 import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import LoadFont from '../../components/LoadFont'
-import Container from '../../components/Container'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { DatabaseContext } from '../../contexts/DatabaseContext'
 import {PRIMARY_COLOR, TEXT_PRIMARY_COLOR} from "../../utils/colors"
+import { globalStyles } from '../../utils/globalStyles'
+
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-import { globalStyles } from '../../utils/globalStyles'
-import { DatabaseContext } from '../../contexts/DatabaseContext'
-import { useDispatch, useSelector } from 'react-redux'
-import { addUser } from '../../store/slices/userSlice'
+import LoadFont from '../../components/LoadFont'
+import Container from '../../components/Container'
+
+
 
 const SignIn = ({ navigation }) => {
     const { users, DB } = useContext(DatabaseContext)

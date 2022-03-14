@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, ScrollView, Image, FlatList, TextInput, Pressable, StatusBar, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Image, FlatList, TextInput, Pressable, StatusBar, StyleSheet, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -12,7 +12,10 @@ import Stack from '../../components/Stack'
 import Container from '../../components/Container'
 import LoadFont from '../../components/LoadFont'
 import PropertyCard from '../../components/PropertyCard'
+import PropertyCardList from '../../components/PropertyCardList'
 import PageSection from '../../components/Section'
+import RentalCard from '../../components/RentalCard'
+import { categories, content, services } from '../../utils/data'
 
 
 
@@ -34,122 +37,6 @@ const HomeScreen = ({ navigation }) => {
         dispatch(addProperty(item))
         navigation.navigate('Details')
     }
-
-    useEffect(() => {}, [])
-
-    const categories = [
-        {
-            key: "kjsvhjdshdjsvdjsvs823723",
-            label: "rent",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house1.jpg'),
-        },
-        {
-            key: "ksviu89wf0wujklcjidsssdvwoef",
-            label: "lease",
-            title: "6 Bedroom Flat",
-            price: 320000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house2.jpg'),
-        },
-        {
-            key: "0w9efiohw7guiqbcwdc7wgfo",
-            label: "hire",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house3.jpg'),
-        },
-        {
-            key: "pqdichwegvbcavaoef384uhf",
-            label: "shortlet",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house4.jpg'),
-        },
-    ]
-
-    const content = [
-        {
-            key: "kjsvhjdshdjsvdjsvs823723",
-            label: "rent",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house1.jpg'),
-        },
-        {
-            key: "ksviu89wf0wujklcjidsssdvwoef",
-            label: "lease",
-            title: "6 Bedroom Flat",
-            price: 320000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house2.jpg'),
-        },
-        {
-            key: "kjsvhjdshdjsvdjsvs823723",
-            label: "rent",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house1.jpg'),
-        },
-        {
-            key: "ksviu89wf0wujklcjidsssdvwoef",
-            label: "lease",
-            title: "6 Bedroom Flat",
-            price: 320000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house2.jpg'),
-        },
-        {
-            key: "0w9efiohw7guiqbcwdc7wgfo",
-            label: "hire",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house3.jpg'),
-        },
-        {
-            key: "pqdichwegvbcavaoef384uhf",
-            label: "shortlet",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house4.jpg'),
-        },
-        {
-            key: "0w9efiohw7guiqbcwdc7wgfo",
-            label: "hire",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house3.jpg'),
-        },
-        {
-            key: "pqdichwegvbcavaoef384uhf",
-            label: "shortlet",
-            title: "6 Bedroom Flat",
-            price: 150000,
-            duration: "month",
-            location: "Zik's Avenue, Enugu State",
-            image: require('../../../assets/house/house4.jpg'),
-        },
-    ]
 
     return (
         <>
@@ -188,6 +75,7 @@ const HomeScreen = ({ navigation }) => {
                         <View>
                             <Stack data={categories} />
                         </View>
+
                         <PageSection title="Recommended for you" handleClick={() => handleClick('Recommended for you', content)}>
                             <View style={{flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row'}}>
                                 {
@@ -204,9 +92,9 @@ const HomeScreen = ({ navigation }) => {
 
                         <PageSection title="Latest">
                             <FlatList 
-                                style={{flex: 1}}
                                 keyExtractor={item => item.key}
                                 data={categories}
+                                contentContainerStyle={{minHeight: 135, paddingVertical: 10}}
                                 horizontal
                                 renderItem={({item}) =>  (
                                     <PropertyCard 
@@ -214,6 +102,38 @@ const HomeScreen = ({ navigation }) => {
                                     />
                                 )}
                             />
+                        </PageSection>
+
+                        <PageSection title="Rental at the go">
+                            <FlatList 
+                                keyExtractor={item => item.key}
+                                data={services}
+                                contentContainerStyle={{alignItems: 'center', paddingVertical: 5}}
+                                horizontal
+                                renderItem={({item}) =>  (
+                                    <RentalCard {...item}  />
+                                )}
+                            />
+                        </PageSection>
+
+                        <PageSection title="Special Offer">
+                            {/* <MoreOffer /> */}
+                            <Image style={{width: '100%', height: 200, borderRadius: 4}} source={require('../../../assets/house/house1.jpg')} />
+                        </PageSection>
+
+                        <PageSection title="Featured Property">
+                            <FlatList 
+                                keyExtractor={item => item.key}
+                                data={content}
+                                decelerationRate="fast"
+                                snapToAlignment='center'
+                                snapToInterval={Dimensions.get('screen').width}
+                                horizontal
+                                contentContainerStyle={{alignItems: 'center', paddingVertical: 10}}
+                                renderItem={({item}) =>  (
+                                    <PropertyCardList {...item}  />
+                                )}
+                            />   
                         </PageSection>
                     </ScrollView>
                 </SafeAreaView>

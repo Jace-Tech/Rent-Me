@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const HelpScreen = () => {
+const SettingScreen = () => {
     return (
         <View>
-            <Text>HelpScreen</Text>
+            <Text>SettingScreen</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({})
-
-export default HelpScreen
+export default SettingScreen

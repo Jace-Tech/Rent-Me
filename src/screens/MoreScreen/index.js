@@ -26,7 +26,7 @@ const MoreScreen = ({ navigation }) => {
                                 name="chevron-thin-left" 
                                 type="entypo" 
                                 color={BLACK}
-                                size={24}
+                                size={20}
                             />
                         </Pressable>
 
@@ -46,7 +46,7 @@ const MoreScreen = ({ navigation }) => {
             <ScrollView style={{flex: 1}}>
                 <View>
                     <Container>
-                        <View style={[globalStyles.alignCenter, {flexWrap: 'wrap'}]}>
+                        <View style={[globalStyles.alignCenter, {flexWrap: 'wrap', justifyContent: 'center'}]}>
                             { 
                                 moreContent?.map((item, index) => (
                                     <PropertyCard 

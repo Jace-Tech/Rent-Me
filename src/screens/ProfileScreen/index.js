@@ -1,21 +1,20 @@
-import { StyleSheet, Text, View, ImageBackground, FlatList, Pressable, Image, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import LoadFont from '../../components/LoadFont'
+import React from 'react'
+import { StyleSheet, Text, View, FlatList, Pressable, ScrollView, Alert } from 'react-native'
 import { Icon } from "react-native-elements"
-import { StatusBar } from 'expo-status-bar'
-import HeaderNav from '../../components/HeaderNav'
 import { globalStyles } from '../../utils/globalStyles'
-import Container from '../../components/Container'
-import { TEXT_SECONDARY_COLOR, PRIMARY_COLOR, BLACK, RED } from "../../utils/colors"
-import { useProfile } from '../../contexts/profileContext'
+import { TEXT_SECONDARY_COLOR, RED } from "../../utils/colors"
+
+import LoadFont from '../../components/LoadFont'
+import HeaderNav from '../../components/HeaderNav'
 import LinkTab from '../../components/LinkTab'
+import Container from '../../components/Container'
 import PageSection from '../../components/Section'
 import RecentItem from '../../components/Recent'
+import ProfileSection from '../../components/ProfileSection'
 
 
 
 const Profile = ({ navigation }) => {
-    const {image, pickImage} = useProfile()
 
     const recentActivity = [
         {
@@ -52,7 +51,7 @@ const Profile = ({ navigation }) => {
             icon: 'user',
             type: 'feather',
             handleClick(){
-                navigation.navigate('Account')
+                navigation.navigate('Help')
             }
         },
         {
@@ -60,41 +59,33 @@ const Profile = ({ navigation }) => {
             icon: 'setting',
             type: 'antdesign',
             handleClick(){
-                navigation.navigate('Account')
+                navigation.navigate('Setting')
             }
         },
     ]
+
+    const toggleLogout = () => {
+        Alert.alert("WANT TO LOG OUT?", "This action can be cancelled and keep enjoying iRent app", [
+            {
+                text: 'Cancel',
+                onPress: () => {
+                    alert("Cancel")
+                }
+            },
+            {
+                text: "logout",
+                onPress: () => {
+                    alert("Log out")
+                }
+            }
+        ])
+    }
 
     return (
         <LoadFont style={{flex: 1}}>
             <HeaderNav title="Profile" />
             <ScrollView style={{flex: 1}}>
-                <ImageBackground source={require('../../bg/bg.png')} style={[globalStyles.alignCenter, styles.hero]}>
-                    <Container>
-                        <View style={[globalStyles.alignCenter, {justifyContent: 'space-between'}]}>
-                            <View style={{alignSelf: 'flex-end', marginBottom: 20}}>
-                                <Text style={styles.profileName}>Jace Alexander</Text>
-                                <Text style={styles.username}>@jaceAlex</Text>
-                            </View>
-                            <View style={styles.avatarBox}>
-                                { image ? (
-                                        <Image style={styles.avatar} source={{uri: image}} />
-                                    ) : (
-                                        <Image style={styles.avatar} source={require('../../../assets/jace-png.png')} />
-                                    )
-                                }
-                                <Pressable style={styles.camera} onPress={pickImage}>
-                                    <Icon 
-                                        name="camera"
-                                        size={18}
-                                        type="feather"
-                                        color="#fff"
-                                    />
-                                </Pressable>
-                            </View>
-                        </View>
-                    </Container>
-                </ImageBackground>
+                <ProfileSection />
 
                 <View style={{marginVertical: 20}}>
                     <Container>
@@ -107,6 +98,7 @@ const Profile = ({ navigation }) => {
                             icon="logout"
                             type="ionicons"
                             title="logout"
+                            handleClick={() => toggleLogout()}
                             color={RED}
                         />
                     </Container>
@@ -117,7 +109,7 @@ const Profile = ({ navigation }) => {
                         keyExtractor={item => item.key}
                         data={recentActivity}
                         horizontal
-                        contentContainerStyle={{alignItems: 'center'}}
+                        contentContainerStyle={{alignItems: 'center', paddingVertical: 10}}
                         renderItem={({item}) => (
                             <RecentItem 
                                 {...item}
@@ -126,7 +118,7 @@ const Profile = ({ navigation }) => {
                     />
                 </PageSection>
 
-                <View style={{marginVertical: 20}}>
+                <View style={{marginVertical: 20, marginBottom: 30}}>
                     <Container>
                         <Pressable onPress={() => {}} style={[globalStyles.alignCenter, styles.helpContainer ]}>
                             <Icon 
@@ -145,52 +137,6 @@ const Profile = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    hero: {
-        minHeight: 200,
-        resizeMode: 'contain',
-        justifyContent: 'space-between',
-    },
-
-    avatarBox: {
-        width: 140,
-        height: 150,
-        backgroundColor: 'rgb(216,218,211)',
-        position: 'relative',
-        borderRadius: 4,
-    },
-
-    camera: {
-        position: 'absolute',
-        zIndex: 5,
-        bottom: 0,
-        right: 0,
-        padding: 10,
-        borderRadius: 20,
-        transform: [
-            {translateY: 10},
-            {translateX: 5},
-        ],
-        backgroundColor: PRIMARY_COLOR
-    },
-
-    avatar: {
-        width: '100%',
-        height: '100%',
-        borderRadius: 4,
-    },
-
-    profileName: {
-        fontSize: 20,
-        lineHeight: 26.4,
-        fontWeight: '700',
-        color: BLACK,
-    },
-
-    username: {
-        color: TEXT_SECONDARY_COLOR, 
-        fontSize: 15,
-        fontFamily: "MavinBold",
-    },
 
     helpContainer: {
         padding: 15,
