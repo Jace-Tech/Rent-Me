@@ -10,6 +10,15 @@ export const useProfile = () => {
 
 const ProfileProvider = ({ children }) => {
     const [image, setImage] = useState(null)
+    const [profileDetails, setProfileDetails] = useState({
+        email: "alexjace151@gmail.com",
+        username: "@jaceAlex",
+        phone: "+2349052541151",
+        gender: "male",
+        age: 21,
+        nationality: "nigeria",
+        fullName: "Jace Alexander"
+    })
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -23,9 +32,16 @@ const ProfileProvider = ({ children }) => {
             setImage(result.uri);
         }
     };
+
+    const value = {
+        image, 
+        pickImage,
+        profileDetails,
+        setProfileDetails
+    }
   
     return (
-        <ProfileContext.Provider value={{image, pickImage}}>
+        <ProfileContext.Provider value={value}>
             { children }
         </ProfileContext.Provider>
     )

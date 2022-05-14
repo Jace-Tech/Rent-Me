@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react'
 import { Dimensions, Image } from 'react-native'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import LoadFont from '../../components/LoadFont'
 import { PRIMARY_COLOR, TEXT_PRIMARY_COLOR } from '../../utils/colors'
 
 
 const SplashScreen = ({ navigation }) => {
+    // const storage = 
 
+    // Get SplashScreen info
+
+    // Check if the user is already logged in
+    
     useEffect(() => {
-        setTimeout(() => navigation.replace('SignUp'), 5000)
+        setTimeout(() => navigation.replace('OnBoarding'), 5000)
     }, [])
 
     return (

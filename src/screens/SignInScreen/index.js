@@ -1,35 +1,42 @@
+import React, { useContext, useState } from 'react'
 import { Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import LoadFont from '../../components/LoadFont'
-import Container from '../../components/Container'
-import {PRIMARY_COLOR, TEXT_PRIMARY_COLOR} from "../../utils/colors"
+import { useDispatch, useSelector } from 'react-redux'
+
+import {PRIMARY_COLOR, RED, TEXT_PRIMARY_COLOR} from "../../utils/colors"
+import { globalStyles } from '../../utils/globalStyles'
+
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-import { globalStyles } from '../../utils/globalStyles'
-import { DatabaseContext } from '../../contexts/DatabaseContext'
-import { useDispatch, useSelector } from 'react-redux'
-import { addUser } from '../../store/slices/userSlice'
+import LoadFont from '../../components/LoadFont'
+import Container from '../../components/Container'
+
+
 
 const SignIn = ({ navigation }) => {
-    const { users, DB } = useContext(DatabaseContext)
     const [password, setPassword] = useState('')
     const [isPressed, setIsPressed] = useState(false)
+    const [error, setError] = useState("")
 
     const dispatch = useDispatch()
-    const selectedUser = useSelector(({user}) => user.user)
+    const selectedUser = useSelector(({user}) => user.users)
 
     const handleLogin = () => {
-        navigation.navigate('Category')
+        setIsPressed(prev => !prev)
+        const user = selectedUser[0]
 
-        // if(password){
-        //     DB.transaction(tx => {
-        //         tx.executeSql("SELECT * FROM users WHERE password = ?", [password], (txObj, result) => {
-        //             if(result?.rows?.length){
-        //                 dispatch(addUser(result?.rows?._array[0]))
-        //             }
-        //         })
-        //     })
-        // }
+        if(user.password === password) {
+            setIsPressed(prev => !prev)
+            navigation.navigate('Category')
+            return
+        }
+        else {
+            setIsPressed(prev => !prev)
+            setError("Incorrect Password")
+            setTimeout(() => {
+                setError("")
+            }, 2000)
+        }
+
     }
 
     return (
@@ -49,6 +56,12 @@ const SignIn = ({ navigation }) => {
 
                     <View style={{ marginTop: 40}}>
                         <Button handleClick={handleLogin} disabled={isPressed} text="Login" color={PRIMARY_COLOR} />
+
+                        {
+                            error ? (
+                                <Text style={styles.error}>{error}</Text>
+                            ) : null
+                        }
                     </View>
                 </Container>
 
@@ -101,6 +114,13 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 40,
         resizeMode: 'contain'
+    },
+
+    error: {
+        textAlign: 'center',
+        marginTop: 15,
+        color: RED,
+        fontSize: 14
     },
 
     signInParagraph: {

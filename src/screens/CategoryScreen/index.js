@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import LoadFont from '../../components/LoadFont'
+import React, { useState } from 'react'
 import { StatusBar } from 'react-native'
-import Container from '../../components/Container'
 import { PRIMARY_COLOR, TEXT_PRIMARY_COLOR } from '../../utils/colors'
-import CategoryCard from '../../components/CategoryCard'
-import CustomButton from '../../components/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCategory, removeCategory } from "../../store/slices/categorySlice"
+
+import Container from '../../components/Container'
+import CategoryCard from '../../components/CategoryCard'
+import CustomButton from '../../components/Button'
+import LoadFont from '../../components/LoadFont'
 
 const CategoryScreen = ({ navigation }) => {
     const [isSelected, setIsSelected] = useState({

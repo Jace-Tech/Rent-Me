@@ -95,28 +95,28 @@ const styles = StyleSheet.create({
     },
 
     stackLayerTwo: {
-        top: 30,
+        top: 10,
         zIndex: 4,
         opacity: .95,
         backgroundColor: '#eee',
+        transform: [
+            {scaleX: 0.95}
+        ]
+    },
+
+    stackLayerThree: {
+        top: 40,
+        zIndex: 3,
+        backgroundColor: '#eee',
+        opacity: .8,
         transform: [
             {scale: 0.9}
         ]
     },
 
-    stackLayerThree: {
-        top: 60,
-        zIndex: 3,
-        backgroundColor: '#eee',
-        opacity: .8,
-        transform: [
-            {scale: 0.8}
-        ]
-    },
-
     stackImage: {
         flex: 1,
-        width: 300,
+        width: '100%',
         resizeMode: 'cover',
         borderRadius: 4,
     },

@@ -5,24 +5,21 @@ import { BLACK } from '../../utils/colors'
 import { globalStyles } from '../../utils/globalStyles'
 import { Icon } from 'react-native-elements'
 
-const PageSection = ({ children, style, title, handleClick, linkLess }) => {
+const PageSection = ({ children, style, title, handleClick, size, linkLess }) => {
     return (
         <View style={[styles.pageSection, style && style]}>
             <Container>
                 <View style={[globalStyles.alignCenter, {justifyContent: 'space-between', marginBottom: 10}]}>
-                    <Text style={styles.pageTitle}>{ title || "Page Title" }</Text>
-
+                    <Text style={[styles.pageTitle, {fontSize: size || 20}]}>{ title || "Page Title" }</Text>
                     { 
-                        !linkLess && 
-                            (
-
-                                <Pressable style={styles.more} onPress={handleClick}>
-                                    <Icon 
-                                        name="dots-two-horizontal" 
-                                        type="entypo" 
-                                    />
-                                </Pressable>
-                            )
+                        !linkLess && (
+                            <Pressable style={styles.more} onPress={handleClick}>
+                                <Icon 
+                                    name="dots-two-horizontal" 
+                                    type="entypo" 
+                                />
+                            </Pressable>
+                        )
                     }
                 </View>
                 { children }
