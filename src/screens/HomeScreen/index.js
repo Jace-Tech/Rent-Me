@@ -43,11 +43,11 @@ const HomeScreen = ({ navigation }) => {
             <StatusBar />
             <LoadFont style={{flex: 1}}>
                 <SafeAreaView style={{flex: 1}}>
-                    <View style={{marginTop: 30, paddingBottom: 10}}>
+                    <View style={{marginTop: 50, paddingBottom: 10}}>
                         <Container>
                             <View style={[globalStyles.alignCenter, { justifyContent: 'space-between'}]}>
                                 <View>
-                                    <Text style={styles.greeting}>Good morning, {user?.username || "Jace"} </Text>
+                                    <Text style={styles.greeting}>Good morning, {user?.username || "Guest"} </Text>
                                     <Text style={styles.greetingSub}>Based on your selected categories</Text>
                                 </View>
 

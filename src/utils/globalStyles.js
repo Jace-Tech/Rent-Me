@@ -15,3 +15,5 @@ export const globalStyles = StyleSheet.create({
         alignItems: "center",
     }
 })
+
+export const CARD_SIZE_DIVISOR = 2.45

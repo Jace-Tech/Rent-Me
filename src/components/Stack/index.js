@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 
     stackImage: {
         flex: 1,
-        width: 300,
+        width: '100%',
         resizeMode: 'cover',
         borderRadius: 4,
     },

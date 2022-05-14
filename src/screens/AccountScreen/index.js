@@ -68,7 +68,7 @@ const AccountScreen = () => {
                     <TextInputChange 
                         label="nationality"
                         value={profileDetails.nationality}
-                        type="number-pad"
+                        type="default"
                         handleChange={(text) => setProfileDetails(prev => ({...prev, nationality: text})) }
                     />
 

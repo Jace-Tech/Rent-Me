@@ -6,9 +6,14 @@ import { PRIMARY_COLOR, TEXT_PRIMARY_COLOR } from '../../utils/colors'
 
 
 const SplashScreen = ({ navigation }) => {
+    // const storage = 
 
+    // Get SplashScreen info
+
+    // Check if the user is already logged in
+    
     useEffect(() => {
-        setTimeout(() => navigation.replace('SignUp'), 5000)
+        setTimeout(() => navigation.replace('OnBoarding'), 5000)
     }, [])
 
     return (

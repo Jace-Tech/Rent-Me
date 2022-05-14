@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, Dimensions, View, Image } from 'rea
 import { LinearGradient } from 'expo-linear-gradient'
 import {PRIMARY_COLOR, YELLOW} from "../../utils/colors"
 import millify from 'millify'
+import { CARD_SIZE_DIVISOR } from '../../utils/globalStyles'
 
 
 
@@ -29,8 +30,8 @@ export default PropertyCard
 const styles = StyleSheet.create({
     propertyCard: {
         position: 'relative',
-        // width: Dimensions.get('screen').width / 2.4,
-        width: 146,
+        width: Dimensions.get('screen').width / CARD_SIZE_DIVISOR,
+        // width: 146,
         overflow: "hidden",
         height: 210,
         margin: 8,

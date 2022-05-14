@@ -10,7 +10,7 @@ const HeaderNav = ({ title, style }) => {
     const navigation = useNavigation()
 
     return (
-        <View style={[{paddingVertical: 15, borderBottomWidth: 1, borderBottomColor: "#eee"}, style]}>
+        <View style={[{paddingVertical: 15, borderBottomWidth: 1, borderBottomColor: "#eee", marginTop: 30}, style]}>
             <Container>
                 <View style={[globalStyles.alignCenter, {justifyContent: 'space-between'}]}>
                     <Pressable onPress={() => navigation.goBack()}>

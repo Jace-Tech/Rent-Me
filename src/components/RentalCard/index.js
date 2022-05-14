@@ -1,6 +1,7 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
+import { CARD_SIZE_DIVISOR } from '../../utils/globalStyles'
 
 const RentalCard = ({ handleClick, service, text, image }) => {
     return (
@@ -17,8 +18,8 @@ const RentalCard = ({ handleClick, service, text, image }) => {
 const styles = StyleSheet.create({
     rentalCard: {
         position: 'relative',
-        // width: Dimensions.get('screen').width / 2.4,
-        width: 130,
+        width: Dimensions.get('screen').width / CARD_SIZE_DIVISOR,
+        // width: 130,
         overflow: "hidden",
         height: 210,
         margin: 8,

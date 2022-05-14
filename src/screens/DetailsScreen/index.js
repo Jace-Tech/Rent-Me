@@ -91,7 +91,7 @@ const Details = ({ navigation }) => {
             <HeaderNav title="Details" />
 
             <ScrollView style={{flex: 1}}> 
-                <View>v
+                <View>
                     <Container>
                         <View style={{position: 'relative', paddingBottom: 30}}>
                             <Image source={details.image} style={styles.detailImage} />

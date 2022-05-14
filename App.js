@@ -1,6 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import tw from "tailwind-react-native-classnames"
 import { View } from 'react-native'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
@@ -17,6 +16,7 @@ import ProfileScreen from './src/screens/ProfileScreen'
 import AccountScreen from './src/screens/AccountScreen'
 import PasswordScreen from './src/screens/PasswordScreen'
 import HelpScreen from './src/screens/HelpScreen'
+import OnBoardingScreen from './src/screens/OnBoardingScreen'
 
 import MapProvider from './src/contexts/MapContext'
 import DatabaseProvider from './src/contexts/DatabaseContext'
@@ -35,6 +35,10 @@ const screens = [
     {
         name: 'Message',
         component: MessageScreen
+    },
+    {
+        name: 'OnBoarding',
+        component: OnBoardingScreen
     },
     {
         name: 'Account',

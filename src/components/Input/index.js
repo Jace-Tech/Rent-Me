@@ -2,11 +2,11 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 import { TEXT_PRIMARY_COLOR } from '../../utils/colors'
 
-const Input = ({ label, defaultValue, handleChange, placeholder, type }) => {
+const Input = ({ label, defaultValue, keyType, handleChange, placeholder, type, handleFocus, handleBlur }) => {
     return (
         <View>
             <Text style={styles.label}>{ label }</Text>
-            <TextInput style={styles.textInput} onChangeText={handleChange} secureTextEntry={type === 'password'} defaultValue={defaultValue && defaultValue} placeholder={placeholder} />
+            <TextInput keyboardType={ keyType || 'default' } onFocus={handleFocus && handleFocus} onBlur={handleBlur && handleBlur} style={styles.textInput} onChangeText={handleChange} secureTextEntry={type === 'password'} defaultValue={defaultValue && defaultValue} placeholder={placeholder} />
         </View>
     )
 }
